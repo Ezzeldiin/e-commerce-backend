@@ -1,5 +1,5 @@
 // import section
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 // in schema everting about fields in database
 const userSchema = new Schema(
   {
@@ -13,7 +13,9 @@ const userSchema = new Schema(
       required: [true, "can't be blank"],
     },
     dateOfBirth: Date,
-    rol: [],
+    role: {
+      type: Types.ObjectId,
+    },
     idDeleted: {
       type: Boolean,
       default: false,

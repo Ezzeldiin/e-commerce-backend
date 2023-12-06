@@ -22,6 +22,8 @@ app.use(morgan("dev"));
 // call index all router
 app.use(`${pseUrl}/user`, indexRouter.userRouter);
 app.use(`${pseUrl}/setting`, indexRouter.settingRouter);
+app.use(`${pseUrl}/customer`, indexRouter.customerRouter);
+app.use(`${pseUrl}/role`, indexRouter.roleRouter);
 
 // handle not found routing
 app.use("*", (req, res, next) => {
