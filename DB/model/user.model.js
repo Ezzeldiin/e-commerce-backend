@@ -12,19 +12,9 @@ const userSchema = new Schema(
       type: String,
       required: [true, "can't be blank"],
     },
-    email: {
-      type: String,
-      unique: true,
-      required: [true, "can't be blank"],
-    },
     dateOfBirth: Date,
     rol: [],
-    confirmEmail: Number,
     idDeleted: {
-      type: Boolean,
-      default: false,
-    },
-    idBlocked: {
       type: Boolean,
       default: false,
     },
