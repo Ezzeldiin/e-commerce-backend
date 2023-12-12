@@ -17,12 +17,7 @@ export const validation = (schema) => {
       }
     });
 
-    if (validationError.length) {
-      console.log(1);
-      next(new apiError(validationError, 400));
-    } else {
-      console.log(2);
-      next();
-    }
+    if (validationError.length) next(new apiError(validationError, 400));
+    else next();
   };
 };

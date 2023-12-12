@@ -1,10 +1,20 @@
 // import section
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 // in schema everting about fields in database
 const roleSchema = new Schema(
   {
     roleName: String,
     screen: [],
+    createdBy: {
+      typeof: Types.ObjectId,
+      // required: [true, "can't be blank"],
+      //  ref: "role",
+    },
+    updatedBy: {
+      typeof: Types.ObjectId,
+      // required: [true, "can't be blank"],
+      //  ref: "role",
+    },
   },
   {
     timestamps: true,

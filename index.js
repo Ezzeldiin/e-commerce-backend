@@ -5,6 +5,7 @@ import morgan from "morgan";
 import * as indexRouter from "./src/module/index.router.js";
 import { apiError, gelableError } from "./src/middleware/errorHandle.js";
 import { conationDB } from "./DB/conation.js";
+import { createUserRole } from "./src/utils/createAdmin.js";
 
 // dot end is the gelable for all application keys
 dotenv.config({ path: "./config/.env" });
@@ -33,11 +34,14 @@ app.use("*", (req, res, next) => {
 app.use(gelableError);
 // conation DB function
 conationDB();
+createUserRole();
+
 // start server
 const sever = app.listen(port, () => {
   console.log(`sever run on port ${port}`);
 });
 
+//createAdmin();
 // handle all errors out off express
 process.on("unhandledRejection", (err) => {
   // log error

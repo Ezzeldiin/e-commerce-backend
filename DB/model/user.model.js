@@ -15,8 +15,9 @@ const userSchema = new Schema(
     dateOfBirth: Date,
     role: {
       type: Types.ObjectId,
+      ref: "role",
     },
-    idDeleted: {
+    isDeleted: {
       type: Boolean,
       default: false,
     },
