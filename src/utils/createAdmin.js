@@ -1,6 +1,7 @@
 import { roleModel } from "../../DB/model/role.js";
 import { userModel } from "../../DB/model/user.model.js";
-import { asyncHandle } from "../middleware/errorHandle.js";
+import { apiError, asyncHandle } from "../middleware/errorHandle.js";
+import bcrypt from "bcryptjs";
 
 export const createUserRole = asyncHandle(async () => {
   const role = await roleModel.findOne({ roleName: process.env.roleName });
@@ -24,16 +25,26 @@ export const createAdmin = asyncHandle(async () => {
   if (!user) {
     const role = await roleModel.findOne({ roleName: process.env.roleName });
     if (role) {
-      const createUser = new userModel({
-        userName: process.env.adminName,
-        password: process.env.userPassword,
-        role: role._id,
-      });
-      const createdUser = await createUser.save();
-      console.log({
-        _id: createdUser._id,
-        userName: createdUser.userName,
-      });
+      bcrypt.hash(
+        process.env.userPassword,
+        parseInt(process.env.saltRand),
+        async (err, result) => {
+          if (err || !result) {
+            return console.log("in-valid hash Password");
+          } else {
+            const createUser = new userModel({
+              userName: process.env.adminName,
+              password: result,
+              role: role._id,
+            });
+            const createdUser = await createUser.save();
+            console.log({
+              _id: createdUser._id,
+              userName: createdUser.userName,
+            });
+          }
+        }
+      );
     }
   }
 });

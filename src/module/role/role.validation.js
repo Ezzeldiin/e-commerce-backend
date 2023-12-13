@@ -27,7 +27,7 @@ export const createRole = {
       authorization: joi
         .string()
         .required()
-        .regex(/^3alama__ [[0-9a-zA-Z]*$/)
+        .regex(/^ecommerce__ [[0-9a-zA-Z]*$/)
         .messages({
           "any.required": "authorization id is required",
           "any.empty": "authorization id must to be not empty",

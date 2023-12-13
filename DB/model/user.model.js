@@ -17,6 +17,10 @@ const userSchema = new Schema(
       type: Types.ObjectId,
       ref: "role",
     },
+    isLogin: {
+      type: Boolean,
+      default: false,
+    },
     isDeleted: {
       type: Boolean,
       default: false,

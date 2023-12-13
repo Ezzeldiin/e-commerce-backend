@@ -21,4 +21,18 @@ export const createUser = {
         "array.base": "role must be array",
       }),
     }),
+  headers: joi
+    .object()
+    .required()
+    .keys({
+      authorization: joi
+        .string()
+        .required()
+        .regex(/^ecommerce__ [[0-9a-zA-Z]*$/)
+        .messages({
+          "any.required": "authorization id is required",
+          "any.empty": "authorization id must to be not empty",
+        }),
+    })
+    .options({ allowUnknown: true }),
 };
