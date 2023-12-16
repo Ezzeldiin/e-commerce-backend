@@ -1,5 +1,5 @@
 import { apiError } from "./errorHandle.js";
-const validationMethod = ["header", "params", "body"];
+const validationMethod = ["headers", "params", "body"];
 const validationError = [];
 
 export const validation = (schema) => {
