@@ -25,8 +25,17 @@ export const createUser = asyncHandle(async (req, res, next) => {
 export const updateUser = asyncHandle(async (req, res, next) => {
   const { userName, password, role } = req.body;
   const { id } = req.params;
+  const findExistName = await userModel.findOne({
+    _id: { $ne: id },
+    userName,
+    isDeleted: false,
+  });
+  if (findExistName) {
+    console.log(findExistName);
+    return next(new apiError("this Name is rallye exist", 400));
+  }
   const user = await userModel.findByIdAndUpdate(
-    { id },
+    { _id: id },
     { userName, password, role },
     { new: true }
   );
@@ -43,10 +52,10 @@ export const updateUser = asyncHandle(async (req, res, next) => {
     });
   }
 });
-export const deleteUser = asyncHandle(async (req, res, next) => {
+export const deleteUser = async (req, res, next) => {
   const { id } = req.params;
   const user = await userModel.findByIdAndUpdate(
-    { id },
+    { _id: id },
     { isDeleted: true },
     { new: true }
   );
@@ -54,13 +63,15 @@ export const deleteUser = asyncHandle(async (req, res, next) => {
     return next(new apiError("in-valid user Id ", 404));
   } else {
     res.status(200).json({
-      message: "update user successfully",
+      message: "delete user successfully",
     });
   }
-});
+};
 export const getAllUser = asyncHandle(async (req, res, nex) => {
-  const { page, size } = req.params;
+  const { page, size } = req.query;
+  // console.log(page, size);
   const { limit, skip } = pagination(parseInt(page), parseInt(size));
+  // console.log(limit, skip);
   let users = await userModel
     .find({ isDeleted: false })
     .limit(limit)

@@ -16,7 +16,7 @@ export const userAut = () => {
         else if (!checkUser.isLogin)
           return next(new apiError("user not login", 401));
         else {
-          const user = { _id: checkUser._id };
+          const user = { userId: checkUser._id };
           req.user = user;
           next();
         }

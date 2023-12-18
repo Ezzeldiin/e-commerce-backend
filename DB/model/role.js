@@ -6,14 +6,12 @@ const roleSchema = new Schema(
     roleName: String,
     screen: [],
     createdBy: {
-      typeof: Types.ObjectId,
-      // required: [true, "can't be blank"],
-      //  ref: "role",
+      type: Types.ObjectId,
+      ref: "user",
     },
     updatedBy: {
-      typeof: Types.ObjectId,
-      // required: [true, "can't be blank"],
-      //  ref: "role",
+      type: Types.ObjectId,
+      ref: "user",
     },
   },
   {

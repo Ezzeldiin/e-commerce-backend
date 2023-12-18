@@ -19,7 +19,7 @@ router.post(
 // end post create user
 // start patch update user
 router.patch(
-  "/updateUser",
+  "/updateUser/:id",
   validation(validators.updateUser),
   userAut(),
   userController.updateUser
@@ -27,7 +27,7 @@ router.patch(
 // end patch update user
 // start delete user
 router.delete(
-  "/deleteUser",
+  "/deleteUser/:id",
   validation(validators.deleteUser),
   userAut(),
   userController.deleteUser
@@ -36,7 +36,7 @@ router.delete(
 // start git all user user
 router.get(
   "/getAllUser",
-  validation(validators.deleteUser),
+  validation(validators.getAllUser),
   userAut(),
   userController.getAllUser
 );

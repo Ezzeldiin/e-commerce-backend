@@ -1,5 +1,8 @@
 // imports section
 import joi from "joi";
+import JoiObjectId from "joi-objectid";
+const myJoiObjectId = JoiObjectId(joi);
+
 // create user validators , this's create user schema for validate input data
 export const createUser = {
   body: joi
@@ -28,8 +31,8 @@ export const createUser = {
         .required()
         // .regex(/^ecommerce__ [[0-9a-zA-Z]*$/)
         .messages({
-          "any.required": "authorization id is required",
-          "any.empty": "authorization id must to be not empty",
+          "any.required": "authorization is required",
+          "any.empty": "authorization must to be not empty",
         }),
     }),
 };
@@ -38,7 +41,7 @@ export const updateUser = {
     .object()
     .required()
     .keys({
-      userName: joi.string().min(4).max(8).required().messages({
+      userName: joi.string().required().messages({
         "any.required": "username is required",
         "any.empty": "username must to be not empty",
       }),
@@ -69,8 +72,7 @@ export const updateUser = {
     .object()
     .required()
     .keys({
-      id: joi
-        .string()
+      id: myJoiObjectId()
         .required()
         // .regex(/^ecommerce__ [[0-9a-zA-Z]*$/)
         .messages({
@@ -98,8 +100,7 @@ export const deleteUser = {
     .object()
     .required()
     .keys({
-      id: joi
-        .string()
+      id: myJoiObjectId()
         .required()
         // .regex(/^ecommerce__ [[0-9a-zA-Z]*$/)
         .messages({
@@ -123,7 +124,7 @@ export const getAllUser = {
         }),
     })
     .options({ allowUnknown: true }),
-  params: joi
+  query: joi
     .object()
     .required()
     .keys({
