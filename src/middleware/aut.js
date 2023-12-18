@@ -11,8 +11,7 @@ export const userAut = () => {
         return next(new apiError("in-valid toke", 400));
       } else {
         const checkUser = await userModel.findById(result.id);
-        if (!checkUser)
-          return next(new apiError("in-valid user registration", 401));
+        if (!checkUser) return next(new apiError("in-valid user", 401));
         else if (!checkUser.isLogin)
           return next(new apiError("user not login", 401));
         else {
