@@ -5,4 +5,5 @@ export const loginUser = {
     userName: joi.string().required(),
     password: joi.string().required(),
   }),
+  Headers: joi.object().options({ allowUnknown: true }),
 };

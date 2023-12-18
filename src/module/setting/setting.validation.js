@@ -1,5 +1,6 @@
 import joi from "joi";
-
+import JoiObjectId from "joi-objectid";
+const myJoiObjectId = JoiObjectId(joi);
 export const createSetting = {
   body: joi.object().keys({
     systemName: joi.string().required(),
@@ -25,5 +26,5 @@ export const updateSetting = {
       authorization: joi.string().required(),
     })
     .options({ allowUnknown: true }),
-  // params:
+  params: myJoiObjectId().required(),
 };
