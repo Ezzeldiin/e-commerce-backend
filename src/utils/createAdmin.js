@@ -25,7 +25,6 @@ export const createAdmin = asyncHandle(async () => {
   if (!user) {
     const role = await roleModel.findOne({
       roleName: process.env.roleName,
-      isDeleted: false,
     });
     if (role) {
       bcrypt.hash(

@@ -5,14 +5,14 @@ export const getAllSetting = (req, res) => {
 };
 export const createSetting = async (req, res) => {
   const { systemName, mainColor, secondaryColor } = req.body;
-  const { filename } = req.file;
+  // const { filename } = req.file;
   const setting = await settingModel.findOne({ systemName });
   if (setting) return next(new apiError("this setting is rally exist", 400));
   const addSetting = new settingModel({
     systemName,
     mainColor,
     secondaryColor,
-    logoPicture: filename,
+    // logoPicture: filename,
   });
   const saveSetting = await addSetting.save();
   if (!saveSetting) return next(new apiError("in-valid to save setting"));
@@ -23,7 +23,7 @@ export const createSetting = async (req, res) => {
         systemName: saveSetting.systemName,
         mainColor: saveSetting.mainColor,
         secondaryColor: saveSetting.secondaryColor,
-        logoPicture: saveSetting.logoPicture,
+        // logoPicture: saveSetting.logoPicture,
       },
     });
 };
