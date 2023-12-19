@@ -21,6 +21,7 @@ app.use(express.json());
 // using morgan in development mode to log url details
 app.use(morgan("dev"));
 // call index all router
+app.use(`${pseUrl}/upload`, express.static("./upload"));
 app.use(`${pseUrl}/aut`, indexRouter.autRouter);
 app.use(`${pseUrl}/user`, indexRouter.userRouter);
 app.use(`${pseUrl}/setting`, indexRouter.settingRouter);

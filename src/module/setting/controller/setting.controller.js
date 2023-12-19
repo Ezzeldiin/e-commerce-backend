@@ -16,6 +16,7 @@ export const getSetting = asyncHandle(async (req, res, next) => {
 export const createSetting = asyncHandle(async (req, res, next) => {
   const { systemName, mainColor, secondaryColor } = req.body;
   const setting = await settingModel.findOne({ systemName });
+  const { userId } = req.user;
   if (setting) return next(new apiError("this setting is rally exist", 400));
   const addSetting = new settingModel({
     systemName,
@@ -39,6 +40,7 @@ export const createSetting = asyncHandle(async (req, res, next) => {
 export const updateSetting = asyncHandle(async (req, res, next) => {
   const { systemName, mainColor, secondaryColor } = req.body;
   const { id } = req.params;
+  const { userId } = req.user;
   const setting = await settingModel.findOneAndUpdate(
     { _id: id },
     {

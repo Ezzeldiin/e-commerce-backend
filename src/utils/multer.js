@@ -42,7 +42,7 @@ export const myMulter = (customValidation) => {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       const __dirname = path.dirname(fileURLToPath(import.meta.url));
-      const pathName = path.join(__dirname, "../upload");
+      const pathName = path.join(__dirname, "../../upload");
       cb(null, pathName);
     },
     filename: (req, file, cb) => {
