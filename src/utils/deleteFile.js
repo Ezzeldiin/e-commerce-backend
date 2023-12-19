@@ -4,7 +4,8 @@ import { apiError } from "../middleware/errorHandle.js";
 export const deleteFile = () => {
   return (req, res, next) => {
     // let deleted = false;
-    fs.readdirSync(req.file.destination, (err, result) => {
+    const { destination } = req?.file;
+    fs.readdirSync(destination, (err, result) => {
       if (err) {
         // deleted = false;
       } else {

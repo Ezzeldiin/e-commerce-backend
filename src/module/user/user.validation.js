@@ -100,13 +100,10 @@ export const deleteUser = {
     .object()
     .required()
     .keys({
-      id: myJoiObjectId()
-        .required()
-        // .regex(/^ecommerce__ [[0-9a-zA-Z]*$/)
-        .messages({
-          "any.required": "id is required",
-          "any.empty": "id must to be not empty",
-        }),
+      id: myJoiObjectId().required().messages({
+        "any.required": "id is required",
+        "any.empty": "id must to be not empty",
+      }),
     }),
 };
 export const getAllUser = {
